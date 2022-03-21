@@ -1,0 +1,60 @@
+package com.example.obviousdemo.ui
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import com.example.obviousdemo.R
+import com.example.obviousdemo.databinding.FragmentImageDetailsBinding
+import com.example.obviousdemo.databinding.FragmentImageListBinding
+import com.example.obviousdemo.viewmodel.ImagesViewModel
+
+
+private const val IMAGE_INDEX = "imageIndex"
+
+class ImageDetailsFragment : Fragment() {
+    private var index: Int? = null
+    val imagesViewModel: ImagesViewModel by activityViewModels()
+    lateinit var binding: FragmentImageDetailsBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            index = it.getInt(IMAGE_INDEX)
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_image_details, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        index?.let { imagesViewModel.getImageDetailsFromIndex(it) }
+        setObservers()
+    }
+
+    fun setObservers(){
+        imagesViewModel._imageItem.observe(viewLifecycleOwner ,{
+            binding.imageItem = it
+        })
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(param1: Int) =
+            ImageDetailsFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(IMAGE_INDEX, param1)
+                }
+            }
+    }
+}
