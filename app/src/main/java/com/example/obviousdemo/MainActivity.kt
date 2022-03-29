@@ -29,4 +29,13 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onPostResume() {
+        super.onPostResume()
+    }
+
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+    }
+
 }

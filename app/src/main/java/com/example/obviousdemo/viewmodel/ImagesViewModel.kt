@@ -1,5 +1,6 @@
 package com.example.obviousdemo.viewmodel
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +14,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
+@VisibleForTesting
 @HiltViewModel
 class ImagesViewModel @Inject constructor(val imageRemoteSource: ImageRemoteSource) : ViewModel() {
 

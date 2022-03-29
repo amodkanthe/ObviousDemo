@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.obviousdemo">
+
+    <application>
+        <activity
+            android:name="com.example.obviousdemo.HiltTestActivity"
+            android:exported="true"
+
+            />
+    </application>
+</manifest>
